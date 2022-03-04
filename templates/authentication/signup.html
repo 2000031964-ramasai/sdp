@@ -1,0 +1,130 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<style>
+#bg{
+ background-repeat:no-repeat;
+ background-size:100%;
+
+}
+body.reg{
+    margin: 0;
+    padding: 0;
+    background: url(reg.jpg);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+
+
+
+div.reg-box{
+
+    width: 450px;
+    height: 650px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+
+}
+.reg-box  p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.reg-box  input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.reg-box input[type="text"], input[type="password"],input[type="email"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+.reg-box input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.reg-box  input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
+.reg-box   a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+.reg-box   a:hover
+{
+    color: #39dc79;
+}
+</style>
+<body id = 'bg' style="background-image:url('{% static 'login.jpeg'%}');">
+<body  class="reg" >
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+
+    <center><h2 >Register</h2></center>
+    <form method="post" action="/signup">
+        {% csrf_token %}
+        <div class="reg-box">
+            <p>
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Create A Username (use only letters and numbers)" Required>
+
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name" Required>
+
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name" Required>
+
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email Address" Required>
+
+            <label for="pass1">Password</label>
+            <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Create Your Password" Required>
+
+            <label for="pass2">Confirm Password</label>
+            <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Your Password" Required>
+            </p>
+             <p>
+            <button type="submit" class="btn btn-primary">signUp</button>
+                </p>
+            <a href="/signin">Already have an account !..Login here</a>
+        </div>
+
+    </form>
+</body>
+</body>
+</html>
