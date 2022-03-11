@@ -9,8 +9,11 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from django.utils.encoding import force_str
+
 from django.contrib.auth import authenticate, login, logout
 from .tokens import generate_token
+import django
 
 
 # Create your views here.
@@ -67,7 +70,7 @@ def signup(request):
         send_mail(subject, message, from_email, to_list, fail_silently=True)
         # Email Address Confirmation Email
         current_site = get_current_site(request)
-        email_subject = "Confirm your Email @ GFG - Django Login!!"
+        email_subject = "Confirm your Email @ AGRI Grow -  Login!!"
         message2 = render_to_string('email_confirmation.html', {
 
             'name': myuser.first_name,
@@ -113,7 +116,7 @@ def signout(request):
 
 def activate(request, uidb64, token):
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         myuser = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         myuser = None
@@ -127,3 +130,11 @@ def activate(request, uidb64, token):
         return redirect('signin')
     else:
         return render(request, 'activation_failed.html')
+
+
+def contact(request):
+    return render(request, 'contact.html')
+
+
+def about(request):
+    return render(request, 'about.html')
