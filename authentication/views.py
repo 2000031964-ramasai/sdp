@@ -104,14 +104,14 @@ def signin(request):
             return render(request, "authentication/index.html", {"fname": fname})
         else:
             messages.error(request, "Invalid Credentials!!")
-            return redirect('home')
+            return redirect('index')
     return render(request, "authentication/signin.html")
 
 
 def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!!")
-    return redirect('home')
+    return redirect('index')
 
 
 def activate(request, uidb64, token):
@@ -138,3 +138,11 @@ def contact(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def services(request):
+    return render(request, 'services.html')
+
+
+def agritools(request):
+    return render(request, 'agritools.html')

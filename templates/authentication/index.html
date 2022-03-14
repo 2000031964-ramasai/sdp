@@ -1,34 +1,80 @@
 {% extends 'base.html' %}
-<html lang="en">
+
+{% block content %}
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
+    <title>Slideshow Images</title>
+    <style>
+      .slider {
+        width: 900px;
+        height: 500px;
+        background-color: yellow;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 100px;
+        margin-bottom:75px;
+        text-align: center;
+        overflow: hidden;
+      }
+      .image-container {
+        width: 2700px;
+        background-color: grey;
+        height: 500px;
+        clear: both;
+        position: relative;
+        -webkit-transition: left 2s;
+        -moz-transition: left 2s;
+        -o-transition: left 2s;
+        transition: left 2s;
+        border-radius:20px;
+      }
+      .slide {
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        position: relative;
+      }
+      #slide-1:target ~ .image-container {
+        left: 0px;
 
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        <strong>Message:</strong> {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+
+      }
+      #slide-2:target ~ .image-container {
+        left: -900px;
+
+      }
+
+      .buttons {
+        position: relative;
+        top: -20px;
+      }
+      .buttons a {
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        border-radius: 50px;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <span id="slide-1"></span>
+      <span id="slide-2"></span>
+
+      <div class="image-container">
+        <a href="{% url 'contact' %}"><img src="https://live.staticflickr.com/1490/25265852172_2116e4cfe9_b.jpg" class="slide" width="900" height="500" /></a>
+        <a href="{% url 'about' %}"><img src="https://media.istockphoto.com/photos/fish-farm-at-bussi-in-abruzzo-picture-id157558583?b=1&k=20&m=157558583&s=170667a&w=0&h=bX1TJkBDfZK-csmCIKSdQDX7IKTQxydT48UaCnaiEnw=" class="slide" width="900" height="500" /></a>
+
+      </div>
+      <div class="buttons">
+        <a href="#slide-1"></a>
+        <a href="#slide-2"></a>
+
+      </div>
     </div>
-    {% endfor %}
-
-    <h3>Welcome to GeeksForGeeks!</h3>
+  </body>
 
 
-    {% if user.is_authenticated %}
-    <h3>Hello {{fname}}!</h3>
-    <h4>You're successfully logged in.</h4>
-    <button type="submit"><a href="/signout">SignOut</a></button>
-    {% else %}
-    <button type="submit"><a href="/signup">SignUp</a></button>
-    <br/>
-    <br/>
-    <button type="submit"><a href="/signin">SignIn</a></button>
-    {% endif %}
-</body>
-</html>
+{% endblock %}
