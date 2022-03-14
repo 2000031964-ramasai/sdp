@@ -29,6 +29,7 @@ def signup(request):
         email = request.POST['email']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
+        request.session['user'] = username
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please try some other username.")
