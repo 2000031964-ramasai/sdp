@@ -44,6 +44,9 @@
   text-align: center;
   text-decoration: none;
   border-radius: 50%;
+
+
+
 }
     </style>
 </head>
@@ -52,9 +55,11 @@
 
   <div class="container-fluid">
        <a class="navbar-brand" href="#">
-      <img src="https://www.jobsbadi.com/wp-content/uploads/2018/03/kl-university.jpg" alt="" width="30" height="24">
+      <img  src="{% static '/agri1.jpg' %}" width="30" height="24">
+
+
     </a>
-    <a class="navbar-brand" href="{% url 'index' %}">KL university</a>
+    <a class="navbar-brand" href="{% url 'index' %}">Agri Grow</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -78,7 +83,7 @@
 
 
   <a  class="nav-link" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style=" cursor: pointer;"href="/signout">
-    {{fname}}
+      Logout
   </a>
 
 
@@ -144,9 +149,7 @@
 
         <h6 class="text-uppercase font-weight-bold" style="color:#FFFFFF;">Company name</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;" >
-        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-          consectetur
-          adipisicing elit.</p>
+        <p>Some of the farmers cannot afford to purchase the tools for the high price for cultivating their land. Purchasing of tools makes them burden to invest because already they are investing on seeds, pesticides, etc.</p>
 
       </div>
       <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -155,16 +158,16 @@
         <h6 class="text-uppercase font-weight-bold" style="color:#FFFFFF;">Products</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a  style="color:white;text-decoration:none;" href="#!">MDBootstrap</a>
+          <a  style="color:white;text-decoration:none;" href="#!">Services</a>
         </p>
         <p>
-          <a style="color:white;text-decoration:none;" href="#!">MDWordPress</a>
+          <a style="color:white;text-decoration:none;" href="#!">Tools</a>
         </p>
         <p>
-          <a  style="color:white;text-decoration:none;" href="#!">BrandFlow</a>
+          <a  style="color:white;text-decoration:none;" href="#!">SignUP</a>
         </p>
         <p>
-          <a  style="color:white;text-decoration:none;" href="#!">Bootstrap Angular</a>
+          <a  style="color:white;text-decoration:none;" href="#!">Sign IN</a>
         </p>
 
       </div>
@@ -206,7 +209,7 @@
     </div>
   </div>
   <div class="footer-copyright text-center py-3">© 2022 Copyright:
-    <a> Rama sai</a>
+    <a> AgriGrow</a>
   </div>
 </footer>
 

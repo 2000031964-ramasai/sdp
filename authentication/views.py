@@ -10,10 +10,16 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.utils.encoding import force_str
-
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from .tokens import generate_token
+from django.shortcuts import render, redirect
+
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 import django
+from django.core.mail import EmailMessage
 
 
 # Create your views here.
@@ -33,23 +39,23 @@ def signup(request):
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please try some other username.")
-            return redirect('home')
+            return redirect('index.html')
 
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email Already Registered!!")
-            return redirect('home')
+            return redirect('index')
 
         if len(username) > 20:
             messages.error(request, "Username must be under 20 charcters!!")
-            return redirect('home')
+            return redirect('index.html')
 
         if pass1 != pass2:
             messages.error(request, "Passwords didn't matched!!")
-            return redirect('home')
+            return redirect('index.html')
 
         if not username.isalnum():
             messages.error(request, "Username must be Alpha-Numeric!!")
-            return redirect('home')
+            return redirect('index.html')
 
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
@@ -57,9 +63,9 @@ def signup(request):
 
         myuser.is_active = False
         myuser.save()
-        messages.success(request,
-                         "Your Account has been created succesfully!! Please check your email to confirm your email "
-                         "address in order to activate your account.")
+        # messages.success(request,
+        # "Your Account has been created succesfully!! Please check your email to confirm your email "
+        # "address in order to activate your account.")
         # Welcome Email
         subject = "Welcome to AGRI-GROW Login!!"
         message = "Hello " + myuser.first_name + "!! \n" + "Welcome to AGRI GROW!! \nThank you for visiting our " \
@@ -111,7 +117,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    messages.success(request, "Logged Out Successfully!!")
+    # messages.success(request, "Logged Out Successfully!!")
     return redirect('index')
 
 
@@ -147,3 +153,11 @@ def services(request):
 
 def agritools(request):
     return render(request, 'agritools.html')
+
+
+def chart(request):
+    return render(request, 'chart.html')
+
+
+def tools(request):
+    return render(request, 'tools.html')

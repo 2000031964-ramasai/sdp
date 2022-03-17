@@ -4,6 +4,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('', views.home, name="index"),
 
@@ -11,7 +12,9 @@ urlpatterns = [
     path('signin', views.signin, name="signin"),
     path('signout', views.signout, name="signout"),
     path('contact/', views.contact, name='contact'),
+    path('chart/', views.chart, name='chart'),
     path('about/', views.about, name='about'),
+    path('tools/', views.tools, name='tools'),
     path('services/', views.services, name="services"),
     path('agritools/', views.agritools, name="agritools"),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
